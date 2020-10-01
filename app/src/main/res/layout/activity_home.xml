@@ -7,37 +7,97 @@
     tools:context=".HomeActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="214dp"
-        android:layout_height="45dp"
-        android:text="Welcome to home page"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/World_View_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="World View"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/logoutbutton"
+    <TextView
+        android:id="@+id/Infected_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="112dp"
+        android:text="Infected"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.186"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/mapbutton"
+    <TextView
+        android:id="@+id/Death_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to Map"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="112dp"
+        android:text="Dead"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.796"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Infected_Value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Infected_Title" />
+
+    <TextView
+        android:id="@+id/Death_Value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.776"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Death_Title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/World_View_Title"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/map_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Map 1" />
+
+            <TextView
+                android:id="@+id/map_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Map 2" />
+
+            <TextView
+                android:id="@+id/map_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Map 3" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

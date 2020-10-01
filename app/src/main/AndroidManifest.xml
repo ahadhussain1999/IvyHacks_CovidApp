@@ -32,14 +32,14 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".PeopleMapActivity"
+            android:name=".CountriesActivity"
             android:label="@string/title_activity_people_map"></activity>
         <activity
-            android:name=".map1"
+            android:name=".UpdatesActivity"
             android:label="@string/title_activity_map1" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MyAreaActivity" />
+        <activity android:name=".StaySafeActivity" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
