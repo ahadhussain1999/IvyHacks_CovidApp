@@ -2,6 +2,7 @@
 Creating an app tracking Covid-19 around the world for the IvyHacks Hackathon.
 
 Using Android Studio to program the app
+
 Using Adobe Xd to create a design layout of the app
 
 Idea:
