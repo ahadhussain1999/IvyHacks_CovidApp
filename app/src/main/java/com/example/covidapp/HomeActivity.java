@@ -20,9 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
-    EditText emailId, password;
-    Button signInButton;
-    TextView signUp;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
@@ -40,39 +37,34 @@ public class HomeActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    Toast.makeText(HomeActivity.this, "Home", Toast.LENGTH_SHORT).show();
 //                    openHome();
                     break;
                 case R.id.nav_myarea:
-                    Toast.makeText(HomeActivity.this, "My Area", Toast.LENGTH_SHORT).show();
                     openMyArea();
                     break;
                 case R.id.nav_staysafe:
-                    Toast.makeText(HomeActivity.this, "Stay Safe", Toast.LENGTH_SHORT).show();
                     openStaySafe();
                     break;
                 case R.id.nav_countries:
-                    Toast.makeText(HomeActivity.this, "Countries", Toast.LENGTH_SHORT).show();
                     openCountries();
                     break;
                 case R.id.nav_updates:
-                    Toast.makeText(HomeActivity.this, "Updates", Toast.LENGTH_SHORT).show();
                     openUpdates();
                     break;
             }
-            return false;
+            return true;
         }
 
     };
 
 
     private void openHome() {
-        Intent intent = new Intent(this, MyAreaActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
     private void openMyArea() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, MyAreaActivity.class);
         startActivity(intent);
     }
 

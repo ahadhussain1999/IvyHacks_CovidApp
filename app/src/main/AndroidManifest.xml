@@ -34,9 +34,6 @@
         <activity
             android:name=".CountriesActivity"
             android:label="@string/title_activity_people_map"></activity>
-        <activity
-            android:name=".UpdatesActivity"
-            android:label="@string/title_activity_map1" />
         <activity android:name=".MyAreaActivity" />
         <activity android:name=".StaySafeActivity" />
         <activity android:name=".HomeActivity">

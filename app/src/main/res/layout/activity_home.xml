@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Death_Title" />
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="150dp"
@@ -83,22 +83,22 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/map_1"
+                android:id="@+id/map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Map 1" />
+                android:text="Map" />
 
             <TextView
-                android:id="@+id/map_2"
+                android:id="@+id/graph_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Map 2" />
+                android:text="Graph 1" />
 
             <TextView
-                android:id="@+id/map_3"
+                android:id="@+id/graph_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Map 3" />
+                android:text="Graph 2" />
 
         </LinearLayout>
     </ScrollView>
@@ -114,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView"
         app:layout_constraintVertical_bias="0.924"
         app:menu="@menu/bottom_navigation" />
 

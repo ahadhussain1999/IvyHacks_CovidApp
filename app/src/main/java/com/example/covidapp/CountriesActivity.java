@@ -5,10 +5,12 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,12 +27,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CountriesActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
+public class CountriesActivity extends FragmentActivity{
 
     private GoogleMap mMap;
     GoogleApiClient googleApiClient;
@@ -42,148 +45,63 @@ public class CountriesActivity extends FragmentActivity implements OnMapReadyCal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countries);
-        returnbutton=findViewById(R.id.returnbutton);
-        returnbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(CountriesActivity.this, MyAreaActivity.class));
-                finish();
-                return;
-            }
-        });
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        buildGoogleApiClient();
-        mMap.setMyLocationEnabled(true);
-        // Add a marker in Sydney and move the camera
-        //LatLng sydney = new LatLng(-34, 151);
-        //LatLng sydney1 = new LatLng(-33, 151);
-        //LatLng sydney2 = new LatLng(-34, 152);
-        //LatLng sydney3 = new LatLng(-34, 150);
-        //LatLng sydney4 = new LatLng(-35, 151);
-
-
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        //mMap.addMarker(new MarkerOptions().position(sydney1));
-        //mMap.addMarker(new MarkerOptions().position(sydney2));
-        //mMap.addMarker(new MarkerOptions().position(sydney3));
-        //mMap.addMarker(new MarkerOptions().position(sydney4));
-
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
-    protected synchronized void buildGoogleApiClient(){
-        googleApiClient=new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        googleApiClient.connect();
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        lastLocation=location;
-
-        LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-
-        String user_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("PeopleNearby");
-        GeoFire geoFire=new GeoFire(ref);
-        GeoQuery geoQuery = geoFire.queryAtLocation(new GeoLocation(location.getLatitude(),location.getLongitude()), 100);
-        geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
-            @Override
-            public void onKeyEntered(String key, GeoLocation location) {
-
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    openHome();
+                    break;
+                case R.id.nav_myarea:
+                    openMyArea();
+                    break;
+                case R.id.nav_staysafe:
+                    openStaySafe();
+                    break;
+                case R.id.nav_countries:
+//                    openCountries();
+                    break;
+                case R.id.nav_updates:
+                    openUpdates();
+                    break;
             }
-
-            @Override
-            public void onKeyExited(String key) {
-
-            }
-
-            @Override
-            public void onKeyMoved(String key, GeoLocation location) {
-
-            }
-
-            @Override
-            public void onGeoQueryReady() {
-
-            }
-
-            @Override
-            public void onGeoQueryError(DatabaseError error) {
-
-            }
-        });
-
-
-
-
-    }
-
-    //@Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-
-    }
-
-   // @Override
-    public void onProviderEnabled(String s) {
-
-    }
-
-    //@Override
-    public void onProviderDisabled(String s) {
-
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        locationRequest=new LocationRequest();
-        locationRequest.setInterval(1000);
-        locationRequest.setFastestInterval(1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED)
-        {
-            return;
+            return true;
         }
-        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient,locationRequest,this);
-        String user_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Search Request");
-        GeoFire geoFire=new GeoFire(ref);
+
+    };
 
 
-
-
+    private void openHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 
-    @Override
-    public void onConnectionSuspended(int i) {
-
+    private void openMyArea() {
+        Intent intent = new Intent(this, MyAreaActivity.class);
+        startActivity(intent);
     }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    private void openCountries() {
+        Intent intent = new Intent(this, CountriesActivity.class);
+        startActivity(intent);
     }
 
-}
+    private void openStaySafe() {
+        Intent intent = new Intent(this, StaySafeActivity.class);
+        startActivity(intent);
+    }
+
+    private void openUpdates() {
+        Intent intent = new Intent(this, UpdatesActivity.class);
+        startActivity(intent);
+    }
+
+   }
