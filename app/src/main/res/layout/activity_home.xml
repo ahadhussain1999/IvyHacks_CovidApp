@@ -83,7 +83,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/map"
+                android:id="@+id/country_map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Map" />
