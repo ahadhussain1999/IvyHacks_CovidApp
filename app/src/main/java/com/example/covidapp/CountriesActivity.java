@@ -125,5 +125,4 @@ public class CountriesActivity extends FragmentActivity implements AdapterView.O
         Intent intent = new Intent(this, UpdatesActivity.class);
         startActivity(intent);
     }
-
-   }
+}

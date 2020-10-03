@@ -3,6 +3,7 @@ package com.example.covidapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,13 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.json.JSONObject;
 
 public class HomeActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
@@ -27,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -68,7 +70,6 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     private void openCountries() {
         Intent intent = new Intent(this, CountriesActivity.class);
         startActivity(intent);
@@ -83,5 +84,4 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, UpdatesActivity.class);
         startActivity(intent);
     }
-
 }

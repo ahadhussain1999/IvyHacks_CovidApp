@@ -36,6 +36,7 @@
             android:label="@string/title_activity_people_map"></activity>
         <activity android:name=".MyAreaActivity" />
         <activity android:name=".StaySafeActivity" />
+        <activity android:name=".UpdatesActivity" />
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
