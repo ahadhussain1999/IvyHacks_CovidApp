@@ -9,4 +9,9 @@ import retrofit2.http.Url;
 public interface COVID19DataAPI {
     @GET("LATEST?disableRedirect=true")
     Call<List<WorldDataSummary>> getWorldDataSummaries();
+
+    @GET("world/total")
+    Call<List<TotalDataSummary>> getTotalDataSummaries();
 }
+
+

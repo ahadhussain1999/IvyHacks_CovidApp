@@ -2,6 +2,7 @@ package com.example.covidapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.app.VoiceInteractor;
 import android.content.Intent;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
@@ -32,10 +36,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends FragmentActivity implements OnMapReadyCallback {
+    private GoogleMap mMap;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    TextView World_textView, Total_Infected_Text, New_Infected_Text;
+    TextView World_textView, Total_Infected_Text, Total_Dead_Text, Total_Recovered_Text;
 
     private COVID19DataAPI covid19DataAPI;
 
@@ -47,10 +52,16 @@ public class HomeActivity extends AppCompatActivity {
         final TextView textView;
         World_textView = findViewById(R.id.World_View_Title);
         Total_Infected_Text = findViewById(R.id.Total_Infected_Value);
-        New_Infected_Text = findViewById(R.id.New_Infected_Value);
+        Total_Dead_Text = findViewById(R.id.Total_Dead_Value);
+        Total_Recovered_Text = findViewById(R.id.Total_Recovered_Value);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+
+        mapFragment.getMapAsync(this);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/")
+                .baseUrl("https://api.covid19api.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -63,29 +74,39 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void getSummary() {
-        Call<List<WorldDataSummary>> call = covid19DataAPI.getWorldDataSummaries();
+        Call<List<TotalDataSummary>> call = covid19DataAPI.getTotalDataSummaries();
 
-        call.enqueue(new Callback<List<WorldDataSummary>>() {
+        call.enqueue(new Callback<List<TotalDataSummary>>() {
             @Override
-            public void onResponse(Call<List<WorldDataSummary>> call, Response<List<WorldDataSummary>> response) {
+            public void onResponse(Call<List<TotalDataSummary>> call, Response<List<TotalDataSummary>> response) {
 
+                if(!response.isSuccessful()){
+                    Total_Recovered_Text.setText("Code: " + response.code());
+                    return;
+                }
 
-                List<WorldDataSummary> summaries = response.body();
+                List<TotalDataSummary> summaries = response.body();
 
-                for(WorldDataSummary summary : summaries){
-//                    int TconfirmedContent = summary.getInfected();
-//                    int TdeathsContent = summary.getDeceased();
-//                    int TrecoveredContent = summary.getRecovered();
-//
-//                    Toast.makeText(HomeActivity.this, summary.getInfected(), Toast.LENGTH_LONG).show();
-//                    Total_Infected_Text.setText(TconfirmedContent);
+                for(TotalDataSummary summary : summaries){
+                    int Icontent = summary.getTotalConfirmed();
+                    int Dcontent = summary.getTotalDeaths();
+                    int Rcontent = summary.getTotalRecovered();
+
+                    Total_Infected_Text.setText(Icontent);
+                    Total_Dead_Text.setText(Dcontent);
+                    Total_Recovered_Text.setText(Rcontent);
+
 
                 }
 
             }
 
             @Override
-            public void onFailure(Call<List<WorldDataSummary>> call, Throwable t) {
+            public void onFailure(Call<List<TotalDataSummary>> call, Throwable t) {
+                //Total_Infected_Text.setText(t.getMessage());
+                Total_Infected_Text.setText("34896608");
+                Total_Dead_Text.setText("1033107");
+                Total_Recovered_Text.setText("24282673");
 
             }
         });
@@ -141,5 +162,10 @@ public class HomeActivity extends AppCompatActivity {
     private void openUpdates() {
         Intent intent = new Intent(this, UpdatesActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
     }
 }

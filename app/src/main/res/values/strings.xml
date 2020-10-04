@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CovidApp</string>
     <string name="title_activity_map1">Map</string>
-    <string name="map_key" translatable="false">AIzaSyD7UxyXVvfu3AvSUCNvrNlobyOKkTfo0HI</string>
+    <string name="google_map_api_key">AIzaSyAx_bANIedRtpoklfbFCwRTB052AmZBfQI</string>
     <string name="title_activity_people_map">Map</string>
 
     <string-array name="countries_array">
