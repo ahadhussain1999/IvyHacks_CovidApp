@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#AC7487">
 
 
     <fragment
@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.693" />
+        app:layout_constraintVertical_bias="0.854" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="544dp"
+        android:layout_marginBottom="500dp"
         android:text="This Country is at High Risk for spreading Covid"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,13 +82,13 @@
         android:id="@+id/Leader_Response_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginTop="431dp"
+        android:layout_marginBottom="60dp"
         android:text="Recent Posts from the Leader of this Country"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Country_Infected_Value"
@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
         android:layout_marginEnd="310dp"
-        android:layout_marginBottom="590dp"
+        android:layout_marginBottom="550dp"
         android:text="0"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="169dp"
         android:layout_marginEnd="183dp"
-        android:layout_marginBottom="590dp"
+        android:layout_marginBottom="550dp"
         android:text="0"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -125,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="288dp"
         android:layout_marginEnd="65dp"
-        android:layout_marginBottom="590dp"
+        android:layout_marginBottom="550dp"
         android:text="0"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -153,7 +153,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="151dp"
         android:layout_marginEnd="307dp"
-        android:layout_marginBottom="548dp"
+        android:layout_marginBottom="500dp"
         android:text="Infected"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -168,7 +168,7 @@
         android:layout_marginStart="168dp"
         android:layout_marginTop="151dp"
         android:layout_marginEnd="188dp"
-        android:layout_marginBottom="548dp"
+        android:layout_marginBottom="500dp"
         android:text="Dead"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -183,7 +183,7 @@
         android:layout_marginStart="261dp"
         android:layout_marginTop="151dp"
         android:layout_marginEnd="38dp"
-        android:layout_marginBottom="548dp"
+        android:layout_marginBottom="500dp"
         android:text="Recovered"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

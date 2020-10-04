@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AC7487"
     tools:context=".StaySafeActivity">
 
     <TextView
@@ -23,7 +24,7 @@
         android:id="@+id/main_expandable_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#8C3939"
+        android:background="#1D988E"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintTop_toBottomOf="@+id/Your_Health_Text"
         app:layout_constraintVertical_bias="0.6"

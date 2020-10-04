@@ -37,7 +37,7 @@ public class UpdatesActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.nav_home:
-//                    openHome();
+                    openHome();
                     break;
                 case R.id.nav_myarea:
                     openMyArea();
@@ -49,7 +49,7 @@ public class UpdatesActivity extends AppCompatActivity {
                     openCountries();
                     break;
                 case R.id.nav_updates:
-                    openUpdates();
+//                    openUpdates();
                     break;
             }
             return true;
