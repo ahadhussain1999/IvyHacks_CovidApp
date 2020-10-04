@@ -13,6 +13,11 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+
 
 public class MyAreaActivity extends AppCompatActivity {
 FirebaseAuth firebaseAuth;
@@ -21,6 +26,7 @@ FirebaseAuth.AuthStateListener authStateListener;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myarea);
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
